@@ -1,0 +1,26 @@
+<h1><i>Entradas de Cinepolis</i></h1>
+
+<div class="container">
+    <mat-form-field>
+        <input matInput type="text" [(ngModel)]="nombre" placeholder="Nombre">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="cantPersonas" placeholder="Número de personas">
+    </mat-form-field>
+    <mat-radio-group name="options" [(ngModel)]="tarjetaCineco">
+        <mat-label>Tarjeta de CINECO:</mat-label>
+        <mat-radio-button *ngFor="let op of opcionesTarjeta" name="options" [value]="op"
+            style="margin: 10px;">
+            {{op}}
+        </mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="cantBoletas" placeholder="Número Boletas">
+    </mat-form-field>
+    <button mat-raised-button (click)="indicarPago()" color="accent">
+        Generar ticket
+    </button><br>
+    <h2>Valor a pagar:</h2>
+    <h3>{{pago}}</h3>
+    <h3>{{respuesta}}</h3>
+</div>

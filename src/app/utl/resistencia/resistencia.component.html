@@ -1,0 +1,95 @@
+<div class="container text-center">
+    <h1><i>Resistencias</i></h1>
+    <img src="https://sdindustrial.com.mx/wp-content/uploads/2022/09/codigos-colores-resistencias.png.webp" alt="Imagen de resistencias" style="height: 300px;">
+</div>
+<div class="container text-center">
+    <div class="col-md-6">
+        <div class="mb-3">
+            <label class="form-label">Banda 1:</label>
+            <select class="form-select" [(ngModel)]="banda1">
+                <option selected>Selecciona el color</option>
+                <option value="0" style="background: #16110b; color: white">Negro</option>
+                <option value="1" style="background: #884c21; color: white">Marron</option>
+                <option value="2" style="background: #fa0505; color: white">Rojo</option>
+                <option value="3" style="background: #fe9800; color: black">Naranja</option>
+                <option value="4" style="background: #fefe00; color: black">Amarillo</option>
+                <option value="5" style="background: #70ac46; color: white">verde</option>
+                <option value="6" style="background: #2e74b4; color: white">Azul</option>
+                <option value="7" style="background: #702f9f; color: white">Violeta</option>
+                <option value="8" style="background: #585858; color: white">Gris</option>
+                <option value="3" style="background: #fefefe; color: black">Blanco</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Banda 2:</label>
+            <select class="form-select" [(ngModel)]="banda2">
+                <option selected>Selecciona el color</option>
+                <option value="0" style="background: #16110b; color: white">Negro</option>
+                <option value="1" style="background: #884c21; color: white">Marron</option>
+                <option value="2" style="background: #fa0505; color: white">Rojo</option>
+                <option value="3" style="background: #fe9800; color: black">Naranja</option>
+                <option value="4" style="background: #fefe00; color: black">Amarillo</option>
+                <option value="5" style="background: #70ac46; color: white">verde</option>
+                <option value="6" style="background: #2e74b4; color: white">Azul</option>
+                <option value="7" style="background: #702f9f; color: white">Violeta</option>
+                <option value="8" style="background: #585858; color: white">Gris</option>
+                <option value="3" style="background: #fefefe; color: black">Blanco</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Banda 3:</label>
+            <select class="form-select" [(ngModel)]="banda3">
+                <option selected>Selecciona el color</option>
+                <option value="1" style="background: #16110b; color: white">Negro</option>
+                <option value="10" style="background: #884c21; color: white">Marron</option>
+                <option value="100" style="background: #fa0505; color: white">Rojo</option>
+                <option value="1000" style="background: #fe9800; color: black">Naranja</option>
+                <option value="10000" style="background: #fefe00; color: black">Amarillo</option>
+                <option value="100000" style="background: #70ac46; color: white">verde</option>
+                <option value="1000000" style="background: #2e74b4; color: white">Azul</option>
+                <option value="10000000" style="background: #702f9f; color: white">Violeta</option>
+                <option value="100000000" style="background: #585858; color: white">Gris</option>
+                <option value="1000000000" style="background: #fefefe; color: black">Blanco</option>
+                <option value="0.1" style="background: #b1a000; color: black">Dorado</option>
+                <option value="0.01" style="background: #a5a5a5; color: black">Plateado</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tolerancia:</label>
+            <select class="form-select" [(ngModel)]="tolerancia">
+                <option selected>Selecciona el color</option>
+                <option value="0.05" style="background: #b1a000; color: black">Oro = 5%</option>
+                <option value="0.10" style="background: #a5a5a5; color: black">Plata = 10%</option>
+                <option value="0.20" >Sin banda = 20%</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <button (click)="calcular()" class="btn btn-primary">Calcular</button>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Banda 1</th>
+            <th scope="col">Banda 2</th>
+            <th scope="col">Banda 3</th>
+            <th scope="col">Tolerancia</th>
+            <th scope="col">Valor en ohmios</th>
+            <th scope="col">Valor mínimo</th>
+            <th scope="col">Valor máximo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td [style]="colorb1">{{labelb1}} </td>
+            <td [style]="colorb2">{{labelb2}} </td>
+            <td [style]="colorb3">{{labelb3}} </td>
+            <td [style]="colortol">{{labeltol}} </td>
+            <td> {{vb123}} Ω </td>
+            <td> {{vmin}} Ω </td>
+            <td> {{vmax}} Ω </td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+
