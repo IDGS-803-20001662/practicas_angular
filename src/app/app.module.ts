@@ -6,10 +6,13 @@ import { ResistenciaModuleModule } from './utl/resistencia-module/resistencia-mo
 import { CinepolisModuleModule } from './utl/cinepolis-module/cinepolis-module.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DistanciaModuleModule } from './utl/distancia-module/distancia-module.module';
+import { AppRoutingModule } from './app.routing.module';
+import { MenuComponent } from './utl/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -17,7 +20,8 @@ import { DistanciaModuleModule } from './utl/distancia-module/distancia-module.m
     CinepolisModuleModule,
     DistanciaModuleModule,
     ResistenciaModuleModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppRoutingModule //Para gestionar las rutas
   ],
   providers: [],
   bootstrap: [AppComponent]
