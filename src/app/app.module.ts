@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ResistenciaModuleModule } from './utl/resistencia-module/resistencia-module.module';
 import { CinepolisModuleModule } from './utl/cinepolis-module/cinepolis-module.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DistanciaModuleModule } from './utl/distancia-module/distancia-module.module';
+import { PizzasModuleModule } from './utl/pizzas-module/pizzas-module.module';
 import { AppRoutingModule } from './app.routing.module';
 import { MenuComponent } from './utl/menu/menu.component';
 
@@ -21,6 +23,8 @@ import { MenuComponent } from './utl/menu/menu.component';
     DistanciaModuleModule,
     ResistenciaModuleModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    PizzasModuleModule,
     AppRoutingModule //Para gestionar las rutas
   ],
   providers: [],

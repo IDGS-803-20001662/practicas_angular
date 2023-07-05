@@ -1,0 +1,161 @@
+<div class="row">
+    <div class="col-6">
+        <form [formGroup]="pizzaForm" (ngSubmit)="onSubmitPizza()">
+            <div class="mb-4">
+                <label for="tamanio" class="form-label">Tamaño:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="tamanio" value="Chica">
+                    <label class="form-check-label">Chica $40</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="tamanio" value="Mediana">
+                        <label class="form-check-label">Mediana $80</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" formControlName="tamanio" value="Grande">
+                        <label class="form-check-label">Grande $120</label>
+                    </div>
+                    <div *ngIf="pizzaForm.get('tamanio')?.touched && pizzaForm.get('tamanio')?.errors?.['required']"
+                        class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle mx-2"></i>
+                        Error, se necesita ingresar un tamaño de pizza
+                    </div>
+            </div>
+            <div class="mb-4">
+                <label for="ingredientes" class="form-label">Ingredientes:</label>
+                <select multiple formControlName="ingredientes" class="form-select">
+                    <option value="Jamon">Jamón $10</option>
+                    <option value="Piña">Piña $10</option>
+                    <option value="Champiñones">Champiñones $10</option>
+                    <option value="Queso">Queso $0</option>
+                </select>
+                <div *ngIf="pizzaForm.get('ingredientes')?.touched && pizzaForm.get('ingredientes')?.errors?.['required']"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, se necesita ingresar los ingredientes
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="num" class="form-label">Num. de Pizzas:</label>
+                <input type="number" class="form-control" formControlName="num" name="num" id="num">
+                <div *ngIf="pizzaForm.get('num')?.touched && (pizzaForm.get('num')?.errors?.['required'] || pizzaForm.get('num')?.errors?.['pattern'])"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, se necesita ingresar la cantidad de pizzas en dígito
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-4 float-end">
+                <button class="btn btn-success">Agregar</button>
+            </div>
+        </form>
+        <br><br>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Tamaño</th>
+                    <th>Ingredientes</th>
+                    <th>Num. Pizzas</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pizza of pizzas; let i = index">
+                    <td>{{pizza.tamanio}}</td>
+                    <td>{{pizza.ingredientes}}</td>
+                    <td>{{pizza.num}}</td>
+                    <td>{{pizza.subtotal | currency}}</td>
+                    <th><button class="btn btn-secondary btn-sm" (click)="borrarPizza(i)"><i class="fa fa-trash"></i></button></th>
+                </tr>
+            </tbody>
+        </table>
+        <h4 class="float-end">Total: {{ totalMostrar }}</h4>
+        <br><br>
+        <form [formGroup]="pedidoForm" (ngSubmit)="onSubmitPedido()">
+            <div class="mb-4">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" formControlName="nombre" class="form-control" name="nombre" id="nombre">
+                <div *ngIf="pedidoForm.get('nombre')?.touched && pedidoForm.get('nombre')?.errors?.['required']"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, ingrese el nombre de quién realiza el pedido
+                </div>
+                <div *ngIf="pedidoForm.get('nombre')?.touched && pedidoForm.get('nombre')?.errors?.['minLength']"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, ingrese el nombre de quién realiza el pedido con al menos 3 caracteres
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="direccion" class="form-label">Dirección:</label>
+                <input type="text" class="form-control" formControlName="direccion" name="direccion" id="direccion">
+                <div *ngIf="pedidoForm.get('direccion')?.touched && pedidoForm.get('direccion')?.errors?.['required']"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, ingrese la dirección dónde se entregará el pedido
+                </div>
+                <div *ngIf="pedidoForm.get('direccion')?.touched && pedidoForm.get('direccion')?.errors?.['minLength']"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, ingrese la dirección dónde se entregará el pedido con al menos 5 caracteres
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="telefono" class="form-label">Teléfono:</label>
+                <input type="text" class="form-control" formControlName="telefono" name="telefono" id="telefono">
+                <div *ngIf="pedidoForm.get('telefono')?.touched && pedidoForm.get('telefono')?.errors?.['required']"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, ingrese el número teléfonico de quién realiza el pedido
+                </div>
+                <div *ngIf="pedidoForm.get('telefono')?.touched && pedidoForm.get('telefono')?.errors?.['minLength']"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, ingrese el número teléfonico de quién realiza el pedido con al menos 10 caracteres
+                </div>
+                <div *ngIf="pedidoForm.get('telefono')?.touched && pedidoForm.get('telefono')?.errors?.['pattern']"
+                    class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mx-2"></i>
+                    Error, ingrese el número teléfonico de quién realiza el pedido correctamente
+                </div>
+            </div>
+            <div *ngIf="mostrarAlerta == false" class="d-grid gap-2 col-4 float-end mb-5">
+                <button class="btn btn-info btn-lg">Hacer Pedido</button>
+            </div>
+            <div *ngIf="mostrarAlerta" class="alert alert-info align-items-center" role="alert">
+                <i class="fas fa-exclamation-triangle mx-2"></i>
+                <div>
+                  ¿Todo listo para tu pedido? No podrás modificarlo en otra ocasión.
+                </div><br>
+                <div class="d-grid gap-2 col-4 d-flex">
+                    <button class="btn btn-success float-end" (click)="confirmarPedido()">Aceptar</button>
+                    <button class="btn btn-danger float-end" (click)="cancelarPedido()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-6">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pedido of pedidos">
+                    <td>{{pedido.nombre}}</td>
+                    <td>{{pedido.direccion}}</td>
+                    <td>{{pedido.telefono}}</td>
+                    <td>{{pedido.fecha}}</td>
+                    <td>{{pedido.total | currency}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
